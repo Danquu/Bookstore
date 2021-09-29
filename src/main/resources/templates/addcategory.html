@@ -7,10 +7,11 @@
 <body>
 	<h1>Add a new category</h1>
 	<div>
-		<form th:object="${category}" th:action="@{save}" action="#" method="post">
+		<form th:object="${category}" th:action="@{savecategory}" action="#" method="post">
 		  	<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="save"></input>
 		</form>
 	</div>
 </body>

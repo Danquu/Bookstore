@@ -1,6 +1,7 @@
 package Bookstore.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import Bookstore.domain.Category;
 import Bookstore.domain.CategoryRepository;
 
+@Controller
 public class CategoryController {
 
 	@Autowired
@@ -27,9 +29,8 @@ public class CategoryController {
         return "addcategory";
     }     
 	
-	@RequestMapping(value ="/save", method = RequestMethod.POST)
+	@RequestMapping(value ="/savecategory", method = RequestMethod.POST)
     public String saveCategory(Category category){
-		//jos id 0 tai null = SQL Insert, muuten SQL Update
         crepository.save(category);
         return "redirect:categorylist";
     }    
