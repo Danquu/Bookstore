@@ -23,34 +23,27 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner categoryDemo(CategoryRepository crepository) {
+	public CommandLineRunner libraryDemo(BookRepository repository, CategoryRepository crepository) {
 		return (args) -> {
 			log.info("Save some categories");
-			crepository.save(new Category("Children"));
-			crepository.save(new Category("Scifi"));
-			crepository.save(new Category("Novel"));
+			Category category1 = new Category("Children");
+			crepository.save(category1);
+			Category category2 = new Category("Scifi");
+			crepository.save(category2);
+			Category category3 = new Category("Novel");
+			crepository.save(category3);
 			
-			log.info("Get categories");
-			for (Category category : crepository.findAll()) {
-				log.info(category.toString());
-			}
-		};
-
-}
-	
-	@Bean
-	public CommandLineRunner bookDemo(BookRepository repository) {
-		return (args) -> {
-			log.info("Save some books please");
-			repository.save(new Book("Atlas", "Pertti Jarvinen", 2009, "1-754", 9.00));
-			repository.save(new Book("Kissojen maailma", "Jertti Parvinen", 2011, "1-756", 9.99));
+			repository.save(new Book("Atlas", "Pertti Jarvinen", 2009, "1-754", 9.00, category2));
+			repository.save(new Book("Kissojen maailma", "Jertti Parvinen", 2011, "1-756", 9.99, category3));
 			
 			log.info("Get the books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
 		};
-	}
+
+}
+	
 		
 	
 }
