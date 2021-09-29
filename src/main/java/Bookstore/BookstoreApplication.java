@@ -23,15 +23,15 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner categoryDemo(CategoryRepository repository) {
+	public CommandLineRunner categoryDemo(CategoryRepository crepository) {
 		return (args) -> {
 			log.info("Save some categories");
-			repository.save(new Category("Children"));
-			repository.save(new Category("Scifi"));
-			repository.save(new Category("Novel"));
+			crepository.save(new Category("Children"));
+			crepository.save(new Category("Scifi"));
+			crepository.save(new Category("Novel"));
 			
 			log.info("Get categories");
-			for (Category category : repository.findAll()) {
+			for (Category category : crepository.findAll()) {
 				log.info(category.toString());
 			}
 		};

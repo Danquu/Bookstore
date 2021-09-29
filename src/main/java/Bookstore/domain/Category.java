@@ -13,24 +13,15 @@ public class Category {
 	private Long categoryid;
 	private String name;
 	
-	public Category(Long categoryid, String name) {
+	public Category() {
 		super();
-		this.categoryid = categoryid;
-		this.name = name;
 	}
-	
-	
 	
 	public Category(String name) {
 		super();
 		this.name = name;
 	}
 
-
-
-	public Category() {
-		super();
-	}
 	public Long getCategoryid() {
 		return categoryid;
 	}
