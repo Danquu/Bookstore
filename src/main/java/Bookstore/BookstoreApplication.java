@@ -11,6 +11,9 @@ import Bookstore.domain.Book;
 import Bookstore.domain.BookRepository;
 import Bookstore.domain.Category;
 import Bookstore.domain.CategoryRepository;
+import Bookstore.domain.User;
+import Bookstore.domain.UserRepository;
+
 
 
 @SpringBootApplication
@@ -23,7 +26,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner libraryDemo(BookRepository repository, CategoryRepository crepository) {
+	public CommandLineRunner libraryDemo(BookRepository repository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			log.info("Save some categories");
 			Category category1 = new Category("Children");
@@ -36,17 +39,18 @@ public class BookstoreApplication {
 			repository.save(new Book("Atlas", "Pertti Jarvinen", 2009, "1-754", 9.00, category2));
 			repository.save(new Book("Kissojen maailma", "Jertti Parvinen", 2011, "1-756", 9.99, category3));
 			
+			User user1 = new User("user", "$2a$12$lOYZnpR3.dXjhb5Ntu4eveOrHfictNun1JihFIgyDfhurLTeWT60a", "USER", "aa@aaaa.com");
+			User user2 = new User("admin", "$2a$12$q/Z2L4YQiPlLO44bMqoYaeAH5pyL39.M51h5aZZ6Y8GH305lbMv3i", "ADMIN", "bb@bbbb.com");
+			urepository.save(user1);
+			urepository.save(user2);
+			
+			
+			
 			log.info("Get the books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
 			}
 		
-		
-		log.info("Get the categories");
-		for (Category category : crepository.findAll()) {
-			log.info(category.toString());
-
-}
 	};
 	
 		
